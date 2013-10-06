@@ -346,8 +346,6 @@ iframe {
     font-size: 20px;
     letter-spacing: 1px;
     text-transform: none;
-    webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: .px;-webkit-text-stroke-color: #58585a;-webkit-font-smoothing:antialiased;
     text-shadow: none;
 	color: #58585a;
 	padding: 32px 10px;
