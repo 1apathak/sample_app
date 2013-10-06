@@ -1,0 +1,418 @@
+/* ==========================================================================
+   Insert Your Custom Styles Below. All styles located in this file will
+   override existing main.css stylesheets.
+   ========================================================================== */ 
+
+/*
+///////////////////////
+This is the formatting for the carousel sliders 
+*/
+
+
+$browser-h1-size: 70px;
+$iphone-h1-size: 110px;
+$iphone-h2-size: 50px;
+$iphone-h1-line-height: 110px;
+$iphone-h2-line-height: 70px;
+$slide1-font-color: #58585a;
+$slide2-font-color: #58585a;
+$slide3-font-color: #58585a;
+$slide4-font-color: #ffffff;
+
+$topShiftWide: -30px;
+$sideShiftWide: 0px;
+
+body{
+   min-width:1000px; /* suppose you want minimun width of 1000px */
+   width: auto !important;  /* Firefox will set width as auto */
+   width:1000px;             /* As IE ignores !important it will set width as 1000px; */
+}
+
+.technology-title {
+	margin-bottom: 60px;
+}
+
+.technology-title img {
+	vertical-align: top;
+}
+
+.slide1 h1 {
+font-size: $browser-h1-size;
+letter-spacing: 0px;
+line-height: 70px;
+margin-bottom: 30px;
+color: #ffffff;
+text-transform: none;
+font-family: 'Maven Pro', sans-serif;
+font-weight: 400;
+text-align: center;
+text-shadow: 0 4px 0 rgba(0,0,0,.3);
+}
+
+.slide1 h2 {
+font-family: 'Maven Pro', sans-serif;
+font-weight: 500;
+line-height: 40px;
+#color: #8ec549;
+color: rgba(255,255,255,0.7);
+text-transform: none;
+text-align: center;
+text-shadow: 0 2px 0 rgba(0,0,0,.1);
+}
+
+
+
+
+.navbar .btn, .navbar .btn-group {
+margin-top: 19px;
+margin-left: 25px;
+}
+
+
+
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+
+#lifestyle {
+padding: 50px 0px 150px 0px;
+height: 400px;
+}
+
+}
+
+
+/* Landscape phone to portrait tablet */
+@media (min-width: 481px) and (max-width: 767px) { 
+
+#lifestyle {
+padding: 50px 0px 150px 0px;
+height: 400px;
+}
+
+}
+
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+#lifestyle {
+
+padding: 50px 0px 150px 0px;
+height: 300px;
+}
+
+
+
+}
+
+/* Desktops and laptops ----------- */
+@media (min-width: 980px) and (max-width: 1699px) {
+#lifestyle {
+
+padding: 200px 0px 150px 0px;
+height: 300px;
+}
+
+#services{
+	.p {
+	text-align: left;
+	}
+	
+	.absolute_main_image {
+	position: absolute;
+	left: 360px;
+	top: 100px+$topShiftWide;
+	}
+
+	.absolute_main_button {
+	position: absolute;
+	left: 570px;
+	top: 254px+$topShiftWide;
+	}
+	
+	.absolute_line {
+	position: absolute;
+	left: 580px;
+	top: 244px+$topShiftWide;
+	}
+	
+	
+	.spoon {
+	top: 19px;
+	left: 343px;
+	}
+	
+	.info_spec_group1 {
+	top: 282px+$topShiftWide;
+	left: 668px;
+	}
+	
+	.absolute_main_button2 {
+	position: absolute;
+	left: 586px;
+	top: 428px+$topShiftWide;
+	}
+	
+	.absolute_line2 {
+	position: absolute;
+	left: 265px;
+	top: 420px+$topShiftWide;
+	}
+	
+ 	.info_spec_group2 {
+	top: 460px+$topShiftWide;
+	left: 244px;
+	}
+	
+	.absolute_main_button3 {
+	position: absolute;
+	left: 581px;
+	top: 557px+$topShiftWide;
+	}
+	
+	.absolute_line3 {
+	position: absolute;
+	left: 594px;
+	top: 544px+$topShiftWide;
+	}
+	
+	.info_spec_group3 {
+	top: 581px+$topShiftWide;
+	left: 685px;
+	}
+	
+	.absolute_main_button4 {
+	position: absolute;
+	left: 520px;
+	top: 391px+$topShiftWide;
+	}
+	
+	.absolute_line4 {
+	position: absolute;
+	left: 253px;
+	top: 346px+$topShiftWide;
+	}
+	
+	.info_spec_group4 {
+	top: 371px+$topShiftWide;
+	left: 260px;
+	}
+	
+	.spec_title {
+	font-family: "GothamMedium", sans-serif;
+	font-size: 16px;
+	color: #272727;
+	text-transform: uppercase;
+	text-align: left;
+	}
+	
+	.spec_info {
+	text-align: left;
+	}
+	
+	h4 {
+	font-size: 16px;
+	line-height: 20px;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 400;
+	text-transform: none;
+	color: #232527;
+	}
+	
+	.clinicians_link {
+	font-size: 21px;
+	line-height: 24px;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 400;
+	text-transform: none;
+	color: #232527;
+	
+	}
+
+}
+
+
+}
+
+/* IPHONE IN PORTRAIT MODE ----------- */
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+	#lifestyle {
+	
+	padding: 50px 0px 150px 0px;
+	height: 1200px;
+	}
+
+
+	.slide1 h1 {
+	font-size: $iphone-h1-size;
+	letter-spacing: 0px;
+	line-height: $iphone-h1-line-height;
+	margin-bottom: 30px;
+	color: $slide1-font-color;
+	text-transform: none;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 400;
+	text-align: center;
+	text-shadow: 0 2px 0 rgba(0,0,0,.1);
+	}
+	
+	.slide1 h2 {
+	font-family: 'Maven Pro', sans-serif;
+	font-size: $iphone-h2-size;
+	font-weight: 500;
+	line-height: $iphone-h2-line-height;
+	color: $slide1-font-color;
+	text-transform: none;
+	text-align: center;
+	text-shadow: 0 2px 0 rgba(0,0,0,.1);
+	}
+	
+
+
+
+}
+
+
+#services{
+	.p {
+	text-align: left;
+	}
+	
+	.absolute_main_image {
+	position: absolute;
+	left: 360px;
+	top: 100px+$topShiftWide;
+	}
+
+	.absolute_main_button {
+	position: absolute;
+	left: 570px;
+	top: 254px+$topShiftWide;
+	}
+	
+	.absolute_line {
+	position: absolute;
+	left: 580px;
+	top: 244px+$topShiftWide;
+	}
+	
+	
+	.spoon {
+	top: 19px;
+	left: 343px;
+	}
+	
+	.info_spec_group1 {
+	top: 282px+$topShiftWide;
+	left: 668px;
+	}
+	
+	.absolute_main_button2 {
+	position: absolute;
+	left: 586px;
+	top: 428px+$topShiftWide;
+	}
+	
+	.absolute_line2 {
+	position: absolute;
+	left: 265px;
+	top: 420px+$topShiftWide;
+	}
+	
+ 	.info_spec_group2 {
+	top: 460px+$topShiftWide;
+	left: 244px;
+	}
+	
+	.absolute_main_button3 {
+	position: absolute;
+	left: 581px;
+	top: 557px+$topShiftWide;
+	}
+	
+	.absolute_line3 {
+	position: absolute;
+	left: 594px;
+	top: 544px+$topShiftWide;
+	}
+	
+	.info_spec_group3 {
+	top: 581px+$topShiftWide;
+	left: 685px;
+	}
+	
+	.absolute_main_button4 {
+	position: absolute;
+	left: 520px;
+	top: 391px+$topShiftWide;
+	}
+	
+	.absolute_line4 {
+	position: absolute;
+	left: 253px;
+	top: 346px+$topShiftWide;
+	}
+	
+	.info_spec_group4 {
+	top: 371px+$topShiftWide;
+	left: 260px;
+	}
+	
+	.spec_title {
+	font-family: "GothamMedium", sans-serif;
+	font-size: 16px;
+	color: #272727;
+	text-transform: uppercase;
+	text-align: left;
+	}
+	
+	.spec_info {
+	text-align: left;
+	}
+	
+	h4 {
+	font-size: 16px;
+	line-height: 20px;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 400;
+	text-transform: none;
+	color: #232527;
+	
+	}
+
+}
+
+
+
+
+#order {
+
+	.product_button p {
+	background-image: url('../img/buy.png');
+	margin: 0 auto;
+	
+	padding: 11px 18px;
+	font-family: "GothamBook", sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+	color: #ffffff;
+	text-transform: uppercase;
+	width: 167px;
+	height: 36px;
+	background-repeat: no-repeat;
+	}
+
+
+
+}
+
+
+#buy_your_shine_now #buy_shine_button {
+background-image: url(http://assets.misfitwearables.com/assets/landing/buy_your_shine_now/btn_buynow-e2e75d42d5db857a4148ba91f117838b.png);
+margin: 0 auto;
+}
+
+
+.absolute {
+position: absolute;
+}
