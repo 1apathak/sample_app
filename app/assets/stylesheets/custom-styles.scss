@@ -18,6 +18,7 @@ $slide1-font-color: #58585a;
 $slide2-font-color: #58585a;
 $slide3-font-color: #58585a;
 $slide4-font-color: #ffffff;
+$grayLighter: #999999;
 
 $topShiftWide: -30px;
 $sideShiftWide: 0px;
@@ -493,3 +494,20 @@ margin: 0 auto;
 .absolute {
 position: absolute;
 }
+
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
