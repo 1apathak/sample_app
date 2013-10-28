@@ -1,14 +1,41 @@
+
+
+<% if signed_in? %>
+  <div class="row">
+    <div class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </div>
+    <div class="span8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
+
 <div class="center hero-unit">
-<h1>Welcome to the Sample App </h1>
+<h1>Welcome</h1>
 
 <h2>
-	This is the home page for the 
-	<a href="http://google.com">Ruby on rails tutorial</a>
-	sample application.
+	If you'd like to edit or view your messages, sign in. Or, if you're new:
 <h2>
 
 <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 
+<br><br>
+<h2>
+	To view your page, enter the associated email address
+<h2>
+	<%= render 'shared/display_form' %>
+
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://www.google.com' %>
+<%=  
+# link_to image_tag("rails.png", alt: "Rails"), 'http://www.google.com'  
+%>
+
+<% end %>
