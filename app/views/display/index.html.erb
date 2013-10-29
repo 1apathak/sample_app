@@ -16,45 +16,28 @@
 <% portions = @micropost.content.split(/v=/) %>
 
 <br><br>
-<div id="player"></div>
+<div id="video1"></div>
 <% else %>
 <span>No Content.<span>
 <% end %>
 
 
 
-<script src="https://www.youtube.com/iframe_api"></script>
-
+<script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
 <script>
-    
-    // create youtube player
-    var player;
-    function onYouTubePlayerAPIReady() {
-        player = new YT.Player('player', {
-          height: '568',
-          width: '276',
-          videoId: '<%= portions.last %>',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-    }
-
-    // autoplay video
-    function onPlayerReady(event) {
-        event.target.playVideo();
-    }
-
-    // when video ends
-    function onPlayerStateChange(event) {        
-        if(event.data === 0) {            
-            location.reload();
-        }
-    }
-    
+function onYouTubePlayerAPIReady() {
+    var videoBox = document.getElementById('video1');
+    videoBox.ytplayer = new YT.Player(videoBox, {
+        videoId: 'kXDiGtgPL6E',
+        playerVars: {
+            //controls: 0,
+            wmode:'transparent'
+        },
+        height: '800',
+        width: '320'
+    });
+}
 </script>
-
 
 	</div>
 </div>
