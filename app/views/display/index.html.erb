@@ -23,21 +23,48 @@
 
 
 
-<script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
+
 <script>
+
+var tag = document.createElement('script');
+tag.src = "http://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 function onYouTubePlayerAPIReady() {
     var videoBox = document.getElementById('video1');
     videoBox.ytplayer = new YT.Player(videoBox, {
-        videoId: 'kXDiGtgPL6E',
+        videoId: '<%= portions.last %>',
         playerVars: {
             //controls: 0,
             wmode:'transparent'
         },
         height: '800',
-        width: '320'
+        width: '320', 
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
     });
+
+     // autoplay video
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+    // when video ends
+    function onPlayerStateChange(event) {        
+        if(event.data === 0) {            
+            window.location = "callback:anything";
+        }
+    }
 }
 </script>
+
+
+
+
+
 
 	</div>
 </div>
