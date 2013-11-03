@@ -1,41 +1,44 @@
 
+<section id="testimonial">
+  <div class="container"> 
 
-<% if signed_in? %>
-  <div class="row">
-    <div class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
+  <% if signed_in? %>
+    <div class="row">
+      <div class="span6 offset3">
+        <section>
+          <%= render 'shared/user_info' %>
+        </section><br><br>
+        <section>
+          <%= render 'shared/micropost_form' %>
+        </section>
+      </div>
+      
     </div>
-    <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
+  <% else %>
+
+  <div class="center hero-unit">
+  <h1>Welcome</h1>
+
+  <h2>
+  	If you'd like to edit or view your messages, sign in. Or, if you're new:
+  <h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+
+  <br><br>
+  <h2>
+  	To view your page, enter the associated email address
+  <h2>
+  	<%= render 'shared/display_form' %>
+
   </div>
-<% else %>
 
-<div class="center hero-unit">
-<h1>Welcome</h1>
+  <%=  
+  # link_to image_tag("rails.png", alt: "Rails"), 'http://www.google.com'  
+  %>
 
-<h2>
-	If you'd like to edit or view your messages, sign in. Or, if you're new:
-<h2>
+  <% end %>
 
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
 
-<br><br>
-<h2>
-	To view your page, enter the associated email address
-<h2>
-	<%= render 'shared/display_form' %>
-
-</div>
-
-<%=  
-# link_to image_tag("rails.png", alt: "Rails"), 'http://www.google.com'  
-%>
-
-<% end %>
+</section>

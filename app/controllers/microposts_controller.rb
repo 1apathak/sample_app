@@ -7,6 +7,21 @@ class MicropostsController < ApplicationController
 
  def create
     @micropost = current_user.microposts.build(micropost_params)
+      
+      link = micropost_params['content']
+      code = (link).split(/v=/)
+      if (code.last)
+        code = (code.last).split(/&/)
+
+        @micropost.content = 'http://www.youtube.com/watch?v=' + code.first
+
+        requestString = 'https://gdata.youtube.com/feeds/api/videos/' + code.first + '?v=2'
+        @doc = Nokogiri::XML(open(requestString))
+        @duration = ActionController::Base.helpers.strip_tags(@doc.xpath('//yt:duration').attr("seconds").text)
+        @duration = @duration.to_i
+        @micropost.duration = @duration
+      end
+
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to current_user

@@ -578,6 +578,85 @@ iframe {
 }
 
 /* ==========================================================================
+   Display Styles
+   ========================================================================== */ 
+#display {
+
+	background: url('../assets/gray_jean.png');
+	padding: 15px 0px 100px 0px;
+}
+
+#display h1, h2, h3 {
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 400;
+    color: #6B6B6B;
+}
+
+#display p {
+	color: #58585a;
+	text-decoration: none;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: 16px;
+
+}
+
+.item {
+	padding-top: 30px;
+}
+
+.project-title {
+	background: #a3a3a3;
+	padding: 12px 10px 10px 10px;
+	margin-top: 0px;
+	color: #ff0000;
+
+}
+
+.project-title p {
+	color: #a3a3a3;
+	text-decoration: none;
+	font-family: 'Maven Pro', sans-serif;
+	webkit-font-smoothing: antialiased;
+	font-weight: 300;
+    font-size: 16px;
+
+}
+
+.project-subtitle p {
+	color: #58585a;
+	text-decoration: none;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 300;
+    font-size: 26px;
+
+}
+
+
+
+.project-feature p {
+	color: #58585a;
+	text-decoration: none;
+	font-family: 'Maven Pro', sans-serif;
+	font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+
+}
+
+.work:hover {
+	opacity: 0.8;
+	
+	transition: all 0.35s;
+	-moz-transition: all 0.35s; /* Firefox 4 */
+	-webkit-transition: all 0.35s; /* Safari and Chrome */
+	-o-transition: all 0.35s; /* Opera */
+
+}
+
+/* ==========================================================================
    LifeStyle Styles
    ========================================================================== */ 
 #lifestyle {

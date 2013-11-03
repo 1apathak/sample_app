@@ -1,12 +1,37 @@
+<%=
+		portions = micropost.content.split(/v=/)
+		requestString = 'https://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
+		@doc = Nokogiri::XML(open(requestString))
+		
+		@title = @doc.at_css("title").text;
+		@thumbnail = ActionController::Base.helpers.strip_tags(@doc.xpath('//media:thumbnail').attr("url").text)
+		@title = ActionController::Base.helpers.strip_tags(@title); nil
+%>
+
+
 <li>
-  <span class="content"><%= micropost.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-  </span>
-  <% if current_user?(micropost.user) %>
-    <%= link_to "delete", micropost, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: micropost.content %>
-  <% end %>
+<div class=row>
+	<div class=span5>
+		  <span class="content"> <a href="<%= micropost.content %>" target="_blank"><img src="<%= @thumbnail %>"><br> <%= @title %></a></span>
+		  <span class="timestamp">
+		    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+		  </span>
+		  <% if current_user?(micropost.user) %>
+		    <%= link_to "delete", micropost, method: :delete,
+		                                     data: { confirm: "You sure?" },
+		                                     title: micropost.content %>
+		  <% end %>
+		</div>
+
+	<div class=span3>
+		Played <%= micropost.timesplayed %> times <br>
+		Watched for <%= micropost.secondswatched %> seconds<br>
+		<% if micropost.lastwatch %>
+			Last Played <%= time_ago_in_words(micropost.lastwatch) %> ago.
+		<% end %>
+
+	</div>
+
+</div>
 </li>
 <hr>
