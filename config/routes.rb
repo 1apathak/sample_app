@@ -11,7 +11,7 @@ SampleApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/display', to: 'display#index',     via: 'get'
-  #match '/update', to: 'display#update',     via: 'get'
+  match '/update', to: 'display#update',     via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
