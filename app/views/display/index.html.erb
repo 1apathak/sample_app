@@ -1,25 +1,11 @@
 <% provide(:title, "User Info") %>
 
 
-<section id="display">
-	<div class="container">	
-		<h1><%= @title.titleize %></h1>
-		<%= gravatar_for @user %>
-        <%= @user.name %>
-	<br><br>
-<% if @micropost %>
-	<span class="content">Duration: <%= @duration %> seconds.</span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
-  </span>
+
 
 <% portions = @micropost.content.split(/v=/) %>
-
-<br><br>
 <div id="video1"></div>
-<% else %>
-<span>No Content.<span>
-<% end %>
+
 
 
 
