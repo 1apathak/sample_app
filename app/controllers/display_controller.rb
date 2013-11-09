@@ -10,9 +10,27 @@ def index
    	flash.now[:error] = 'Could not find that user' # Not quite right!
    	redirect_to root_url
 	else
-		@micropost = @user.microposts.sample
+
+		@microposts = @user.microposts.order(:created_at).reverse_order #return posts from newest to oldest (posted)
+	
+	found=0
+	increment=0
+#skip if we've watched in the past 60 minutes, if all have been watched, search within the past 2 hours, etc
+	while (found==0) do
+		increment=increment+1
+		@microposts.each do |i|
+			if (i.lastwatch.nil? || ((DateTime.now - (increment*60).minutes) > i.lastwatch)) 
+				@micropost = i
+				found=1
+				break
+			end
+		end
+	end
+
+
+
 		portions = @micropost.content.split(/v=/)
-		requestString = 'https://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
+		requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
 		@doc = Nokogiri::XML(open(requestString))
 		@duration = @doc.xpath('//yt:duration').attr("seconds").text
 		@duration = ActionController::Base.helpers.strip_tags(@duration)
@@ -33,7 +51,7 @@ def update
 	if @mymicropost.present?
 		#if the duration of the video isn't listed, get it from the youtube api
 		if @mymicropost.duration==0
-			requestString = 'https://gdata.youtube.com/feeds/api/videos/' + params[:vid] + '?v=2'
+			requestString = 'http://gdata.youtube.com/feeds/api/videos/' + params[:vid] + '?v=2'
 			@doc = Nokogiri::XML(open(requestString))
 			@duration = ActionController::Base.helpers.strip_tags(@doc.xpath('//yt:duration').attr("seconds").text)
 			@duration = @duration.to_i

@@ -1,11 +1,24 @@
 <%=
 		portions = micropost.content.split(/v=/)
-		requestString = 'https://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
-		@doc = Nokogiri::XML(open(requestString))
+		requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
+		require "net/http"
+		require 'open-uri'
+
+		url = URI.parse(requestString)
+		req = Net::HTTP.new(url.host, url.port)
+		res = req.request_head(url.path)
+		if res.code == "200"
+			@doc = Nokogiri::XML(open(requestString))
 		
-		@title = @doc.at_css("title").text;
-		@thumbnail = ActionController::Base.helpers.strip_tags(@doc.xpath('//media:thumbnail').attr("url").text)
-		@title = ActionController::Base.helpers.strip_tags(@title); nil
+			@title = @doc.at_css("title").text;
+			@thumbnail = ActionController::Base.helpers.strip_tags(@doc.xpath('//media:thumbnail').attr("url").text)
+			@title = ActionController::Base.helpers.strip_tags(@title); nil
+		else
+			@title = "This link looks like it's dead"
+		end
+
+		
+		
 %>
 
 
@@ -26,6 +39,9 @@
 	<div class=span3>
 		Played <%= micropost.timesplayed %> times <br>
 		Watched for <%= micropost.secondswatched %> seconds<br>
+		<% if micropost.quality %>
+		Received <%= micropost.quality %> likes<br>
+		<% end %>
 		<% if micropost.lastwatch %>
 			Last Played <%= time_ago_in_words(micropost.lastwatch) %> ago.
 		<% end %>

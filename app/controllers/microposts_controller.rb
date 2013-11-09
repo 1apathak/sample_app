@@ -15,7 +15,7 @@ class MicropostsController < ApplicationController
 
         @micropost.content = 'http://www.youtube.com/watch?v=' + code.first
 
-        requestString = 'https://gdata.youtube.com/feeds/api/videos/' + code.first + '?v=2'
+        requestString = 'http://gdata.youtube.com/feeds/api/videos/' + code.first + '?v=2'
         @doc = Nokogiri::XML(open(requestString))
         @duration = ActionController::Base.helpers.strip_tags(@doc.xpath('//yt:duration').attr("seconds").text)
         @duration = @duration.to_i
