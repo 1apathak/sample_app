@@ -18,9 +18,13 @@ end
 
 @id = flickr.people.findByUsername(:username => username).id
 
+
 list = flickr.photos.search(:user_id => @id)
 
-if (index>(list.count-1))
+@imageCount = (list.count-1)
+
+
+if (index>@imageCount)
 	index=0
 end
 
