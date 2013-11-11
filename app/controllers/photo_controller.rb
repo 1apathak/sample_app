@@ -10,10 +10,13 @@ FlickRaw.shared_secret="93e43a71a0731237"
 
 
 index = params[:index].to_i
-username = params[:username]
+user = User.find_by(email: params[:search].downcase)
+
+username = user.flikr_name
+
 
 if (username.nil?)
-	username = "anupampathak"
+	#username = "anupampathak"
 end
 
 @id = flickr.people.findByUsername(:username => username).id
