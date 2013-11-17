@@ -11,7 +11,7 @@ def index
    	redirect_to root_url
 	else
 
-		@microposts = @user.microposts.order(:created_at).reverse_order #return posts from newest to oldest (posted)
+		@microposts = @user.microposts.order(:created_at).shuffle #return posts from newest to oldest (posted)
 	
 	found=0
 	increment=0

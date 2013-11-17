@@ -23,7 +23,7 @@ class MicropostsController < ApplicationController
       end
 
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "Successfully created video."
       redirect_to current_user
     else
       @feed_items = []
