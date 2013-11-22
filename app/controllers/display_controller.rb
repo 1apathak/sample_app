@@ -21,24 +21,40 @@ def index
 		@microposts.each do |i|
 			if (i.lastwatch.nil? || ((DateTime.now - (increment*60).minutes) > i.lastwatch)) 
 				@micropost = i
-				found=1
-				break
+
+				portions = @micropost.content.split(/v=/)
+				test = '6QVtHogFrI0'
+
+				requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
+				
+				begin
+					@doc = Nokogiri::XML(open(requestString))
+					@duration = @doc.xpath('//yt:duration').attr("seconds").text
+					@duration = ActionController::Base.helpers.strip_tags(@duration)
+
+					@title = @doc.at_css("title").text
+					@title = ActionController::Base.helpers.strip_tags(@title)
+					@displayVid=1
+				rescue Exception => e
+					@displayVid=0
+				end
+
+				if @displayVid==1
+					found=1
+					break
+				end
 			end
+		end
+
+		if (increment>5)
+			@microposts = @user.microposts.order(:created_at).sample
+			found=1
+			@displayVid=1
+			break
 		end
 	end
 
 
-
-		portions = @micropost.content.split(/v=/)
-		requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
-		@doc = Nokogiri::XML(open(requestString))
-		@duration = @doc.xpath('//yt:duration').attr("seconds").text
-		@duration = ActionController::Base.helpers.strip_tags(@duration)
-
-		@title = @doc.at_css("title").text
-		@title = ActionController::Base.helpers.strip_tags(@title)
-
-		@displayVid=1
 		
 	end
 
