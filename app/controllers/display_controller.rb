@@ -8,7 +8,9 @@ def index
    @user = User.find_by(email: params[:search].downcase)
    if !@user
    	flash.now[:error] = 'Could not find that user' # Not quite right!
-   	redirect_to root_url
+   	@email = params[:search].downcase
+   	@flikr = 'i_still_believe_in_u'
+   	redirect_to signup_url(:email => @email, :flikr => @flikr, :signup => 'true')
 	else
 
 		@microposts = @user.microposts.order(:created_at).shuffle #return posts from newest to oldest (posted)
