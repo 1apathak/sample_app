@@ -2,7 +2,7 @@
 
 
 
-
+<% if @micropost %>
 <% portions = @micropost.content.split(/v=/) %>
 <div id="video1"></div>
 
@@ -44,10 +44,12 @@ function onYouTubePlayerAPIReady() {
 }
 </script>
 
-
-
-
-
+<% else %>
+<h1 align=center><br><br><br>
+You need to add some videos to this account!
+</h1><br><br>
+<h2 align=center>(close this view to go back)</h2>
+<% end %>
 
 	</div>
 </div>
