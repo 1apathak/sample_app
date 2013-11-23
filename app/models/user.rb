@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  require 'flickraw'
+
   has_many :microposts, dependent: :destroy
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
@@ -10,6 +12,7 @@ class User < ActiveRecord::Base
 
    has_secure_password
    validates :password, length: { minimum: 6 }, :on => :create
+   validate :flikr_validate_exists
 
 def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -43,4 +46,23 @@ def feed
       self.remember_token = User.encrypt(User.new_remember_token)
     end
 
+
+  def flikr_validate_exists
+    if !(:flikr_name.blank?)
+      FlickRaw.api_key="803f036ec6d01e3ac0c1ca99bbc55260"
+      FlickRaw.shared_secret="93e43a71a0731237"
+      begin
+        @id = flickr.people.findByUsername(:username => self.flikr_name).id
+        #errors.add(:flikr_name, @id)
+      rescue Exception => e
+        errors.add(:flikr_name, "Invalid Flikr Name")
+      end
+
+      if @id == "Invalid Flikr Name"
+        errors.add(:flikr_name, "Invalid Flikr Name")
+      end
+      
+    end
+
+end
 end
