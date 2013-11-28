@@ -20,13 +20,22 @@ else
 	username = "anupampathak"
 end
 
+error=0
+begin
+	@id = flickr.people.findByUsername(:username => username).id
+	list = flickr.photos.search(:user_id => @id)
+rescue
+	error=1
+end
 
-@id = flickr.people.findByUsername(:username => username).id
+if (list.count==0 || error==1)
+	username = "anupampathak"
+	@id = flickr.people.findByUsername(:username => username).id
+	list = flickr.photos.search(:user_id => @id)
+end
 
-list = flickr.photos.search(:user_id => @id)
 
 @imageCount = (list.count-1)
-
 if (index<0)
 	index=rand(list.count)
 end

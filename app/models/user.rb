@@ -62,6 +62,16 @@ def feed
         errors.add(:flikr_name, "Invalid Flikr Name")
       end
       
+      unless @id.nil?
+      list = flickr.photos.search(:user_id => @id)
+      imageCount = (list.count)
+      end
+
+      if imageCount==0
+        errors.add(:flikr_name, "No available images in this account!")
+      end
+
+
     end
 
 end
