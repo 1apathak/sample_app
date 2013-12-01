@@ -25,7 +25,15 @@
 <li>
 <div class=row>
 	<div class=span5>
-		  <span class="content"> <a href="<%= micropost.content %>" target="_blank"><img src="<%= @thumbnail %>"><br> <%= @title %></a></span>
+		  <span class="content"> <a href="<%= micropost.content %>" target="_blank"><img src="<%= @thumbnail %>"><br> 
+		  	<%= @title %></a></span>
+
+			<% if (micropost.videxists == 2) %><br>
+			<div class="alert alert-error">
+  <p><strong>Something's wrong with this video!</strong> Last time we played the video, there was an error. You might want to delete this one.</p>
+</div>
+			<% end %>
+
 		  <span class="timestamp">
 		    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
 		  </span>
