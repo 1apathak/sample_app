@@ -1,0 +1,86 @@
+<br><br><br>
+<hr>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 290px; height: 200px; margin: 0 auto"></div>
+
+
+<h1>
+
+</h1>
+
+<%
+#build the array of the view count for the days of the week (string)
+today = Date.today
+date = Time.now.to_date
+
+print = Time.now.to_date.strftime("%a")
+
+print = 7.days.ago.strftime("%a")
+
+i=0
+
+categories = '['
+categories << "'"
+categories << print
+categories << "',"
+for i in 2..6
+	categories << raw("'")
+   categories << (8-i).days.ago.strftime("%a")
+   categories << raw("',")
+end
+categories << raw("'")
+categories << 'Today'
+categories << raw("']")
+
+%>
+
+
+<script>
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Activity in the Past Week'
+            },
+            xAxis: {
+                categories: <%=raw categories%>
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Video Plays'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Video Plays',
+                data: <%=@daysArray%>
+    
+            }]
+        });
+    });
+
+</script>
