@@ -1,9 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
+    if signed_in?
+
   	 @micropost = current_user.microposts.build if signed_in?
   	 @feed_items = current_user.feed.paginate(:page => params[:page], :per_page => 5) if signed_in?
 
-     @microposts = current_user.microposts.order(:quality).reverse_order
+     @microposts = current_user.microposts.order(:quality).reverse_order 
 
      countedDays = Array.new(7, 0)
      today = DateTime.now.to_date
@@ -33,7 +35,9 @@ class StaticPagesController < ApplicationController
     @daysArray << "]"
     puts YAML::dump(@daysArray)
 
+
   end
+  end #end home
 
   def help
   end
