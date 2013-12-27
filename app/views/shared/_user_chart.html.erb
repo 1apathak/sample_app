@@ -2,7 +2,7 @@
 <hr>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+<br><br>
 <div id="container" style="min-width: 290px; height: 200px; margin: 0 auto"></div>
 
 
@@ -41,10 +41,11 @@ categories << raw("']")
 $(function () {
         $('#container').highcharts({
             chart: {
-                type: 'column'
+                type: 'column',
+                backgroundColor:'rgba(255, 255, 255, 0.1)'
             },
             title: {
-                text: 'Activity in the Past Week'
+                text: 'Video Plays This Week'
             },
             xAxis: {
                 categories: <%=raw categories%>
@@ -52,7 +53,7 @@ $(function () {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Video Plays'
+                    text: ''
                 }
             },
             tooltip: {
