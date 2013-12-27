@@ -32,10 +32,11 @@ def index
 					next if (@micropost.videxists == 2)
 
 					portions = @micropost.content.split(/v=/)
-					test = '6QVtHogFrI0'
+					test = 'KI7qk_y1YDE'
 
 					requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
-					
+					#requestString = 'http://gdata.youtube.com/feeds/api/videos/' + test + '?v=2'
+
 					@displayVid=1
 					#check if the video is valid or not. If nothing, flag it.
 						begin
@@ -53,8 +54,7 @@ def index
 						#render :text => @title.text.index('CA')
 						@title = @doc.xpath('//media:restriction')
 						unless (@title.nil?)
-							unless (@title.text.index('CA').nil?)
-								
+							if (!@title.text.index('CA').nil? || !@title.text.index('US').nil?)
 								#@micropost.videxists=2
 								#@success = @micropost.save!
 								@micropost.update_attribute(:videxists, 2)

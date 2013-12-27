@@ -1,0 +1,20 @@
+<br><br><h2>
+  Photos from this past week.
+</h2>
+
+<ul class="thumbnails">
+  
+ <% for photo in current_user.user_images%>
+   <li class="span3">
+
+<a class="thumbnail" href="<%=photo.image_url%>">
+             <%= image_tag photo.image_url if photo.image? %>            
+            <span class="caption"><%=photo.created_at.strftime("%a %b %d")%> </span>
+        </a>
+        <% #link_to "(remove)", photo, :confirm => 'Are you sure?', :method => :delete %>
+ 
+</li>
+  <% end %>
+
+
+</ul>

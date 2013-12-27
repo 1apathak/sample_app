@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   require 'flickraw'
 
   has_many :microposts, dependent: :destroy
+  has_many :user_images, dependent: :destroy
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 

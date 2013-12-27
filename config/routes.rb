@@ -5,6 +5,8 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :display, only: [:index]
   resources :photo, only: [:index]
+  resources :user_images, only: [:create, :destroy]
+
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
@@ -14,7 +16,8 @@ SampleApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/display', to: 'display#index',     via: 'get'
   match '/update', to: 'display#update',     via: 'get'
-    match '/photo', to: 'photo#index',     via: 'get'
+  match '/photo', to: 'photo#index',     via: 'get'
+  match '/createFam', to: 'user_images#create',     via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,14 @@
+<%= form_for(:userimage, url: user_images_path, :html => {:multipart => true}) do |f| %>
+
+
+  <%= f.hidden_field :user_id %>
+ <p>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+</p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  
+  <p><%= f.submit %></p>
+<% end %>

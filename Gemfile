@@ -12,6 +12,10 @@ gem "nokogiri", '1.4.4', :require => "nokogiri"
 gem 'sanitize'
 gem "flickraw", "~> 0.9.6"
 
+gem "rmagick"
+gem "carrierwave"
+gem 'protected_attributes'
+
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
