@@ -10,6 +10,7 @@ skip_before_filter :verify_authenticity_token
       puts params[:userimage][:email].downcase 
     end
     @userimage = UserImage.new(params[:userimage])
+    
     if !params[:userimage].nil?
       puts "a form submission has been detected."
       user = User.find_by(email: params[:userimage][:email].downcase)
