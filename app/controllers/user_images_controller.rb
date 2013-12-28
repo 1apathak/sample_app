@@ -5,7 +5,10 @@ skip_before_filter :verify_authenticity_token
   end
 
  def create
-    Rails.logger.debug "Create has been called."
+    puts params[:userimage]
+    if !params[:userimage].nil?
+      puts params[:userimage][:email].downcase 
+    end
     @userimage = UserImage.new(params[:userimage])
     if !params[:userimage].nil?
       puts "a form submission has been detected."
