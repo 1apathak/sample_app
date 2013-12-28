@@ -7,16 +7,16 @@ class UserImagesController < ApplicationController
     Rails.logger.debug "Create has been called."
     @userimage = UserImage.new(params[:userimage])
     if !params[:userimage].nil?
-      Rails.logger.debug "a form submission has been detected."
+      puts "a form submission has been detected."
       user = User.find_by(email: params[:userimage][:email].downcase)
       @userimage.user_id=user.id
       @userimage.save
       flash[:notice] = "successfully created a new image"
-      Rails.logger.debug "successfully created the new image."
+      puts "successfully created the new image."
       redirect_to root_url
     else
       flash[:notice] = "Please upload a correct image and email address."
-      Rails.logger.debug "no form present, rendering the new form."
+      puts "no form present, rendering the new form."
       render :action => 'new'
     end
   end
@@ -26,7 +26,7 @@ class UserImagesController < ApplicationController
     @userimage = UserImage.find(params[:id])
     @userimage.destroy
     flash[:notice] = "Successfully destroyed painting."
-    Rails.logger.debug "Deleted the userimage."
+    puts "Deleted the userimage."
     redirect_to root_url
   end
 
