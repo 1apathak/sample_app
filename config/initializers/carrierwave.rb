@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
     #
     # In Heroku, follow http://devcenter.heroku.com/articles/config-vars
     #
-    # $ heroku config:add S3_KEY=AKIAITLIRY4ZBBUF7WVQ S3_SECRET=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 S3_REGION=eu-west-1 S3_ASSET_URL=http://s3-us-west-1.amazonaws.com/ S3_BUCKET_NAME=liftmuse
+    # $ heroku config:add S3_KEY=AKIAITLIRY4ZBBUF7WVQ S3_SECRET=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 S3_REGION=eu-west-1 S3_ASSET_URL=http://s3-us-west-1.amazonaws.com S3_BUCKET_NAME=liftmuse
  
     # Configuration for Amazon S3
     :provider              => 'AWS',
@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
   config.fog_directory    = ENV['S3_BUCKET_NAME']
   config.fog_public     = true                                   # optional, defaults to true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
-  config.asset_host     = ENV['S3_ASSET_URL']         # optional, defaults to nil
+  #config.asset_host     = ENV['S3_ASSET_URL']         # optional, defaults to nil
 
   # For testing, upload files to local `tmp` folder.
   if Rails.env.test? || Rails.env.cucumber?
