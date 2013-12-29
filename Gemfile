@@ -17,6 +17,7 @@ gem "rmagick"
 gem "carrierwave"
 gem 'protected_attributes'
 gem 'fog'
+gem 'unf'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
