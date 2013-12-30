@@ -19,7 +19,7 @@ def index
 			@microposts = @user.microposts.order(:quality).shuffle #return posts in random order
 		end
 
-		@microposts = @user.microposts.order(:quality).reverse_order #TAKE OUT
+		#@microposts = @user.microposts.order(:quality).reverse_order #TAKE OUT
 
 	found=0
 	increment=0

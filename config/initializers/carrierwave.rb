@@ -23,13 +23,13 @@ CarrierWave.configure do |config|
  # config.asset_host     = ENV['S3_ASSET_URL']         # optional, defaults to nil
 
   # For testing, upload files to local `tmp` folder.
-  #if Rails.env.test? || Rails.env.cucumber?
-  #  config.storage = :file
-  #  config.enable_processing = false
-  #  config.root = "#{Rails.root}/tmp"
-  #else
-  #  config.storage = :fog
-  #end
+  if Rails.env.test? || Rails.env.cucumber?
+    config.storage = :file
+    config.enable_processing = false
+    config.root = "#{Rails.root}/tmp"
+  else
+    config.storage = :fog
+  end
  
   config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
  
