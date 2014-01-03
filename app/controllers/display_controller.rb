@@ -23,44 +23,28 @@ def index
 
 	found=0
 	increment=0
+	@microposts.each do |i|
+		if (i.priority)
+			@micropost=i
+			@micropost.update_attribute(:priority, false)
+			@displayVid=check_video	#check if the video is valid or not. If nothing, flag it.
+			if @displayVid==1
+				found=1
+				@micropost.update_attribute(:videxists, 1)
+				break
+			end
+		end
+	end
+
 #skip if we've watched in the past 60 minutes, if all have been watched, search within the past 2 hours, etc
 		while (found==0) do
 			increment=increment+1
 			@microposts.each do |i|
 				if (i.lastwatch.nil? || ((DateTime.now - (increment*60).minutes) > i.lastwatch)) 
 					@micropost = i
-					next if (@micropost.videxists == 2)
-
-					portions = @micropost.content.split(/v=/)
-					test = 'KI7qk_y1YDE'
-
-					requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
-					#requestString = 'http://gdata.youtube.com/feeds/api/videos/' + test + '?v=2'
-
-					@displayVid=1
-					#check if the video is valid or not. If nothing, flag it.
-						begin
-							@doc = Nokogiri::XML(open(requestString))
-							@duration = @doc.xpath('//yt:duration').attr("seconds").text
-							@duration = ActionController::Base.helpers.strip_tags(@duration)
-							@title = @doc.at_css("title").text
-							@title = ActionController::Base.helpers.strip_tags(@title)			
-						rescue Exception => e
-							@displayVid=0
-							@micropost.update_attribute(:videxists, 2)
-						end
-						
-						#@title = @doc.xpath('//media:restriction')
-						#render :text => @title.text.index('CA')
-						@title = @doc.xpath('//media:restriction')
-						unless (@title.nil?)
-							if (!@title.text.index('CA').nil? || !@title.text.index('US').nil?)
-								#@micropost.videxists=2
-								#@success = @micropost.save!
-								@micropost.update_attribute(:videxists, 2)
-								@displayVid=0
-							end
-						end
+					next if (@micropost.videxists == 2) #there is a problem with this video, skip it
+					
+					@displayVid=check_video	#check if the video is valid or not. If nothing, flag it.
 
 					if @displayVid==1
 						found=1
@@ -77,7 +61,7 @@ def index
 				@displayVid=1
 				break
 			end
-		end
+		end #end while
 
 
 		
@@ -114,4 +98,36 @@ def update
 end
 
 
+private
+
+    def check_video
+    	portions = @micropost.content.split(/v=/)
+		#test = 'KI7qk_y1YDE'
+		#requestString = 'http://gdata.youtube.com/feeds/api/videos/' + test + '?v=2'
+		requestString = 'http://gdata.youtube.com/feeds/api/videos/' + portions.last + '?v=2'
+
+    	displayVid=1
+	     begin
+			@doc = Nokogiri::XML(open(requestString))
+			@duration = @doc.xpath('//yt:duration').attr("seconds").text
+			@duration = ActionController::Base.helpers.strip_tags(@duration)
+			@title = @doc.at_css("title").text
+			@title = ActionController::Base.helpers.strip_tags(@title)			
+		rescue Exception => e
+			displayVid=0
+			@micropost.update_attribute(:videxists, 2)
+		end
+
+		@title = @doc.xpath('//media:restriction')
+		unless (@title.nil?)
+			if (!@title.text.index('CA').nil? || !@title.text.index('US').nil?)
+				@micropost.update_attribute(:videxists, 2)
+				displayVid=0
+			end
+		end
+
+		return displayVid	
+    end
 end
+
+

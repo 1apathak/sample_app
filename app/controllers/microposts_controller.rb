@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :signed_in_user, only: [:create, :destroy, :update]
+  before_action :correct_user,   only: [:destroy, :update]
 
   def index
   end
@@ -30,6 +30,16 @@ class MicropostsController < ApplicationController
       render 'static_pages/home'
     end
   end
+
+ def update
+    if @micropost.priority
+      @micropost.priority = false
+    else
+      @micropost.priority=true
+    end
+    @micropost.save
+    redirect_to current_user
+ end
 
   def destroy
     @micropost.destroy

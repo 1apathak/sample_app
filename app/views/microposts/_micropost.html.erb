@@ -53,7 +53,15 @@
 		<% if micropost.lastwatch %>
 			Last Played <%= time_ago_in_words(micropost.lastwatch) %> ago.
 		<% end %>
+		<br>
+		<% if micropost.priority %>
+			<%= link_to "high priority (reset)", micropost, method: :put,
+		                                            title: micropost.content, class: "btn btn-danger" %>
+		<% else %>
+			<%= link_to "make priority", micropost, method: :put,
+		                                            title: micropost.content %>
 
+		<% end %>
 	</div>
 
 </div>
