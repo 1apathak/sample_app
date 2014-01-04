@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessible :name, :email, :flikr_name, :password, :password_confirmation
+
   require 'flickraw'
 
   has_many :microposts, dependent: :destroy
@@ -49,7 +51,7 @@ def feed
 
 
   def flikr_validate_exists
-    if !(:flikr_name.blank?)
+    if (self.flikr_name.length>0)
       FlickRaw.api_key="803f036ec6d01e3ac0c1ca99bbc55260"
       FlickRaw.shared_secret="93e43a71a0731237"
       begin
